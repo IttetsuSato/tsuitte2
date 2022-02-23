@@ -1,4 +1,4 @@
-FROM php:8.1.3-fpm-buster
+FROM php:8.1.3-fpm
 COPY php.ini /usr/local/etc/php/
 RUN apt-get update && apt-get install -y \
     zlib1g-dev \
