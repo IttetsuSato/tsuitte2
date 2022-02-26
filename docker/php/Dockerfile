@@ -1,5 +1,5 @@
 # FROM : どんなdocker イメージを利用して構築をするか
-FROM php:7.4-apache
+FROM php:8.1.3-apache
 
 # 設定ファイルをdockerコンテナ内のPHP、Apacheに読み込ませる
 # ADD：ローカルのファイルをDockerコンテナ内にコピーする
@@ -9,6 +9,10 @@ ADD 000-default.conf /etc/apache2/sites-enabled/
 # Composerのインストール
 # RUN：コンテナ内でコマンド実行する
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
+
+# Node.jsをインストール
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
 
 # ミドルウェアのインストール
 RUN apt-get update \
